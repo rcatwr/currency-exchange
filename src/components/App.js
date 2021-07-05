@@ -10,7 +10,7 @@ const App = () => {
   const [fromCurrency, setFromCurrency] = useState(null);
   const [toCurrency, setToCurrency] = useState(null);
   const [allRates, storeAllRates] = useState(null);
-  const [newBase, setNewBase] = useState(1);
+  // const [newBase, setNewBase] = useState(1);
   const [countryList, setCountryList] = useState(null);
   const [errorToggle, setErrorToggle] = useState(false);
 
@@ -45,13 +45,13 @@ const App = () => {
 
         storeAllRates(reqRates);
 
-        if (fromCurrency) setNewBase(reqRates[toCurrency]);
+        // if (fromCurrency) setNewBase(reqRates[toCurrency]);
       } catch (error) {
         console.error(`SOMETHING WENT WRONG!: ${error}`);
         setErrorToggle(true);
       }
     };
-    queryExchange();
+    fromCurrency && toCurrency && queryExchange();
   }, [fromCurrency, toCurrency]);
 
   useEffect(() => {
@@ -62,8 +62,10 @@ const App = () => {
 
       function cleanObjectsFromArray(array, key) {
         const dupsRemove = array.filter((obj, index, self) => {
-          if (index === self.findIndex((el) => el[key] === obj[key]))
+          if (index === self.findIndex((el) => el[key] === obj[key])) {
             return index;
+          }
+          return null;
         });
 
         return dupsRemove.filter((obj) => obj.code && obj.code !== "(none)");
@@ -75,9 +77,9 @@ const App = () => {
     getCountryCurrencies();
   }, []);
 
-  useEffect(() => {
-    setToAmount((fromAmount * newBase).toFixed(2));
-  }, [newBase, fromAmount]);
+  // useEffect(() => {
+  //   setToAmount((fromAmount * newBase).toFixed(2));
+  // }, [newBase, fromAmount]);
 
   const optionDisplay = (otherDropdownValue) =>
     countryList.map((currency) =>
