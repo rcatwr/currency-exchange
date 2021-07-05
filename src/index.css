@@ -1,13 +1,35 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.app-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.currency-select {
+  margin: 0 5px;
+}
+.select-flex-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card {
+  min-height: 500px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.icon {
+  margin-right: 1em;
+}
+
+input,
+select,
+.app-title,
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+#root {
+  max-width: 450px;
+}
+
+.app-title {
+  margin-top: 1.5rem;
+  font-weight: 100;
 }
