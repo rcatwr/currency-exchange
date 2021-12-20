@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Results from "./Results";
 import { exchange } from "../api/exchange.js";
-import { countries } from "../api/countries.js";
+import { countries, countries2 } from "../api/countries.js";
 import "../index.css";
 
 const App = () => {
-  const [toAmount, setToAmount] = useState("0.00");
-  const [fromAmount, setFromAmount] = useState("0.00");
+  const [toAmount, setToAmount] = useState("");
+  const [fromAmount, setFromAmount] = useState("");
   const [fromCurrency, setFromCurrency] = useState(null);
   const [toCurrency, setToCurrency] = useState(null);
   const [allRates, storeAllRates] = useState(null);
@@ -16,7 +16,7 @@ const App = () => {
 
   // fix this logic here
   const handleChange = (value, id) => {
-    console.log(value, id);
+    //console.log(value, id);/////
     if (id === "fromAmount") {
       setFromAmount(value);
       if (toCurrency) setToAmount((value * allRates[toCurrency]).toFixed(2));
@@ -71,10 +71,45 @@ const App = () => {
         return dupsRemove.filter((obj) => obj.code && obj.code !== "(none)");
       }
 
-      setCountryList(cleanObjectsFromArray(results, "code"));
+      // setCountryList(cleanObjectsFromArray(results, "code"));
+    };
+    // test
+    const currList = [];
+    const testCountryCurr = async () => {
+      const { data } = await countries2.get("");
+      // console.log(data);
+      const results = data.map((country) => country.currencies);
+      for (const c in results) {
+        if (results[c]) {
+          for (const [key, value] of Object.entries(results[c])) {
+            currList.push({ code: key, name: value.name });
+          }
+        }
+      }
+
+      // function cleanObjectsFromArray(array, key) {
+      //   const dupsRemove = array.filter((obj, index, self) => {
+      //     if (index === self.findIndex((el) => el[key] === obj[key])) {
+      //       return index;
+      //     }
+      //     console.log("index", index, array[index]);
+      //     return null;
+      //   });
+      //   console.log(dupsRemove);
+      //   return dupsRemove.filter((obj) => obj.code && obj.code !== "(none)");
+      // }
+      let known = new Set();
+      // let filtered = currList.map((subarray) =>
+      let filtered = currList.filter(
+        (item) => !known.has(item.code) && known.add(item.code)
+      );
+      //
+      console.log(filtered);
+      setCountryList(filtered);
     };
 
     getCountryCurrencies();
+    testCountryCurr();
   }, []);
 
   // useEffect(() => {
