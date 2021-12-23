@@ -1,4 +1,26 @@
-# Getting Started with Create React App
+# International Currency Converter
+
+[Live app](https://affectionate-murdock-cc8891.netlify.app/)
+
+## About
+
+This is a simple international currency converter app using the React framework.
+
+## Installation
+
+to install and run from the project directory:
+
+### `npm install`
+
+### `npm start`
+
+## Usage
+
+To convert one currency to another, simply select the currency of your choice from the
+dropdowns. The conversion rate will then appear. Begin by typing a currency value in one of the two inputs.
+The currencies and values may be updated at any time, recalculating the conversion. Give it a try!
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
