@@ -1,6 +1,7 @@
 # International Currency Converter
 
 [Live app](https://affectionate-murdock-cc8891.netlify.app/)
+![screenshot of currency app](https://raw.githubusercontent.com/rcatwr/currency-exchange/master/public/images/curr-scrshot.png?token=ABFFHKIZK7PZFJ5OLEWX5YLBYO74A)
 
 ## About
 
